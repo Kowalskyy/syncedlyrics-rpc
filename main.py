@@ -62,8 +62,8 @@ async def main(token):
 		status = await get()
 		current_track = f'{status[0]} - {status[1]}'
 
-		match status[2]:
-			case 4:
+		match status[2]: #check music status
+			case 4: #if music is playing
 				lrc = None
 				if elapsed > 10000: #i have no idea what i've done, but "it just works" (C)
 					current_time = elapsed
@@ -92,7 +92,7 @@ async def main(token):
 						await Run(discord, "online", line[11:] if not line is None else '')
 						print(line)
 
-			case 5:
+			case 5: #if music is paused
 				current_time = elapsed
 				pass
 
