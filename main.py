@@ -37,8 +37,9 @@ async def get(): #get metadata info
 		request = await mc.request_async()
 		cs = request.get_current_session()
 		mp = await cs.try_get_media_properties_async()
+		# author = mp.album_artist if not mp.album_artist == '' else mp.artist
 		author = mp.artist if not mp.artist == '' else mp.album_artist
-		title = mp.title if not mp.title == '' els mp.album_title
+		# title = mp.album_title if not mp.album_title == '' else mp.title
 		status = cs.get_playback_info().playback_status
 		return author, title, status
 	except Exception as e:
@@ -111,3 +112,4 @@ if __name__ == '__main__':
 		with open('tkn.txt', 'r') as f:
 			token = f.read()
 	asyncio.run(main(token))
+
